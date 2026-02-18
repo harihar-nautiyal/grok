@@ -1,4 +1,4 @@
-# Grok bot for Matrix
+# AI bot for Matrix
 This is a simple Matrix bot that uses Gemini to generate responses to user messages.
 
 # How to use?
