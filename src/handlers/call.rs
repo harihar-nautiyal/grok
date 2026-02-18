@@ -1,3 +1,4 @@
+use crate::env::*;
 use anyhow::Result;
 use gemini_rust::Gemini;
 use matrix_sdk::ruma::events::SyncMessageLikeEvent;
@@ -24,7 +25,9 @@ pub async fn call(
         return Ok(());
     }
 
-    let user = UserId::parse("@grok:unifwe.com")?;
+    let user_id = format!("@{}:{}", USERNAME.as_str(), SERVER.as_str());
+
+    let user = UserId::parse(user_id)?;
 
     let MessageType::Text(text_content) = event.content.msgtype else {
         return Ok(());

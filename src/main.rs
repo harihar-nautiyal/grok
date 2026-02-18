@@ -1,5 +1,6 @@
 use dotenv::dotenv;
 use gemini_rust::{GeminiBuilder, Model};
+use grok::env::*;
 use grok::handlers::call::call;
 use grok::handlers::invite::auto_join;
 use matrix_sdk::Client;
@@ -7,7 +8,6 @@ use matrix_sdk::Room;
 use matrix_sdk::config::SyncSettings;
 use matrix_sdk::ruma::UserId;
 use matrix_sdk::ruma::events::room::message::OriginalSyncRoomMessageEvent;
-use std::env;
 use std::sync::Arc;
 use tracing::info;
 use tracing::subscriber::set_global_default;
@@ -30,15 +30,15 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     set_global_default(subscriber)?;
 
-    let gemini_api = env::var("GEMINI_API").expect("GEMINI_API environment variable not set");
-    let username = env::var("USERNAME").expect("USERNAME environment variable not set");
-    let password = env::var("PASSWORD").expect("PASSWORD environment variable not set");
-    let server = env::var("SERVER").expect("SERVER environment variable not set");
-
     info!("Initializing gemini client");
 
+    let api_key = GEMINI_API.as_str();
+    let server = SERVER.as_str();
+    let username = USERNAME.as_str();
+    let password = PASSWORD.as_str();
+
     let gemini = Arc::new(
-        GeminiBuilder::new(&gemini_api)
+        GeminiBuilder::new(api_key)
             .with_model(Model::Gemini25FlashLite)
             .build()?,
     );

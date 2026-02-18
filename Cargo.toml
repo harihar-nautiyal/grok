@@ -9,6 +9,7 @@ dotenv = "0.15.0"
 futures-util = "0.3.32"
 gemini-rust = "1.7.1"
 matrix-sdk = { version = "0.16.0", default-features = false, features = ["anyhow", "e2e-encryption", "rustls-tls"] }
+once_cell = "1.21.3"
 reqwest = { version = "0.13.2", features = ["json"] }
 ruma = "0.14.1"
 serde = { version = "1.0.228", features = ["derive"] }

@@ -1170,6 +1170,7 @@ dependencies = [
  "futures-util",
  "gemini-rust",
  "matrix-sdk",
+ "once_cell",
  "reqwest 0.13.2",
  "ruma",
  "serde",
